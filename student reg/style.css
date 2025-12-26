@@ -1,0 +1,159 @@
+/* styles.css
+   Responsive design for mobile, tablet and desktop.
+   Keep file structure flat as required.
+*/
+
+/* Base / Reset-ish */
+:root{
+  --bg:#f6f8fb;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --accent:#2563eb;
+  --danger:#ef4444;
+  --radius:12px;
+  --container-width:1100px;
+  --gap:16px;
+  --max-form-width:520px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:linear-gradient(180deg,var(--bg),#ffffff);
+  color:#111827;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Container */
+.container{
+  max-width:var(--container-width);
+  margin:0 auto;
+  padding:16px;
+}
+
+/* Header */
+.site-header{
+  background:linear-gradient(90deg,#0ea5e922, #60a5fa11);
+  padding:18px 0;
+}
+.header-inner{display:flex;flex-direction:column;gap:8px}
+.header-inner h1{margin:0;font-size:1.4rem}
+.lead{margin:0;color:var(--muted);font-size:0.95rem}
+
+/* Grid layout: form + display */
+.main-grid{
+  display:grid;
+  gap:var(--gap);
+  grid-template-columns: 1fr;
+  margin-top:16px;
+}
+
+/* Card */
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow:0 6px 18px rgba(15,23,42,0.06);
+}
+
+/* Form */
+.form-card h2{margin-top:0}
+.form-row{display:flex;flex-direction:column;margin-bottom:12px}
+.form-row label{font-weight:600;margin-bottom:6px;font-size:0.95rem}
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="search"]{
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid #e6e9ef;
+  font-size:0.95rem;
+}
+.error{color:var(--danger);font-size:0.82rem;height:16px;margin-top:6px;display:block}
+
+/* Buttons */
+.form-actions{display:flex;gap:10px;align-items:center;margin-top:8px}
+.btn{
+  background:var(--accent);
+  color:white;
+  border:none;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+}
+.btn:active{transform:translateY(1px)}
+.btn-secondary{
+  background:transparent;
+  color:var(--accent);
+  border:1px solid #c7ddff;
+}
+
+/* Display */
+.display-card h2{margin-top:0}
+.display-controls{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}
+.display-controls input{width:60%;padding:8px 10px;border-radius:8px;border:1px solid #e6e9ef}
+.count{color:var(--muted);font-size:0.95rem}
+
+/* Table container and table */
+.table-container{
+  max-height:320px; /* base height for desktop -> JS will toggle overflow when needed */
+  border-radius:8px;
+  padding:0;
+  border:1px solid #f0f2f5;
+  overflow:hidden; /* we'll toggle overflow via JS dynamically */
+}
+.student-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px;
+}
+.student-table thead{
+  background:#fafafa;
+  position:sticky;
+  top:0;
+}
+.student-table th, .student-table td{
+  text-align:left;
+  padding:10px 12px;
+  border-bottom:1px solid #f3f4f6;
+  font-size:0.95rem;
+}
+.student-table tbody tr:nth-child(even){background:#ffffff}
+.actions-btn{display:flex;gap:8px}
+.action{
+  padding:6px 8px;border-radius:8px;border:none;cursor:pointer;font-weight:600;
+}
+.action.edit{background:#f0f9ff;color:#0369a1}
+.action.delete{background:#fff1f2;color:#b91c1c;border:1px solid #fee2e2}
+
+/* Footer */
+.site-footer{margin-top:18px;padding:14px 0;text-align:center;color:var(--muted);font-size:0.9rem}
+
+/* Responsive breakpoints */
+/* Mobile <=640px */
+@media (max-width:640px){
+  .main-grid{grid-template-columns:1fr}
+  .display-controls input{width:100%}
+  .student-table{min-width:unset;font-size:0.9rem}
+  .table-container{max-height:320px}
+  .header-inner h1{font-size:1.1rem}
+}
+
+/* Tablet 641px - 1024px */
+@media (min-width:641px) and (max-width:1024px){
+  .main-grid{grid-template-columns: 1fr 1fr; align-items:start}
+  .form-card{max-width:var(--max-form-width)}
+  .table-container{max-height:420px}
+}
+
+/* Desktop >=1025px */
+@media (min-width:1025px){
+  .main-grid{grid-template-columns: 380px 1fr; align-items:start}
+  .form-card{position:sticky; top:20px}
+  .table-container{max-height:520px}
+}
+
+/* small utility */
+.small-muted{color:var(--muted);font-size:0.85rem}
